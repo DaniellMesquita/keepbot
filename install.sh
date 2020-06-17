@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|
+      |_.__/   \___/   \__|  1.0
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -59,7 +59,7 @@ if [ "$firstime" = "true" ]
       echo "ECDSA node setup isn't yet available in KEEP Bot, BUT YOU CAN COME WITH GOOD NEWS TO YOUR HOUSE: RANDOM BEACON NODE IS AVAILABLE AND WE'LL HELP THOU TO SETUP IT. 🥳"
       echo "For the ECDSA node, keep an eye into Keep Bot's site (shown above in the SH presentation) or in our GitHub repo: https://github.com/DaniellMesquita/keepbot"
 	  echo "Donations are much appreciated, pls buy me a Husky dog:"
-	  echo "Standard: 0xDDfC2e10702d8A781727A34D83B3bb3CA94a3E91 / daniellmesquita.eth.link"
+	  echo "Standard: 0xDDfC2e10702d8A781727A34D83B3bb3CA94a3E91 / daniellmesquita.eth"
 	  echo "Argent: 0xc7dffdc95483bbf8b372bce78f1d9b2a7a1e8143 / daniell.argent.xyz"
 	  echo "------"
 	  echo "Please note that Keep Bot is on early development stage, and currently focused in testnet (Ropsten) and the random beacon. New updates are coming."
@@ -299,6 +299,29 @@ EOF
 	  # Set password permanently in VPS user's profile
       echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> ~/.profile
       echo "Done!"
+
+      echo "Installing keepbot..."
+      sudo cp -r -f --preserve=all . /usr/lib/keepbot
+	  sudo cat > /usr/bin/keepbot << ENDOFFILE
+#!/bin/bash
+
+source /usr/lib/keepbot/keepbot
+ENDOFFILE
+	  sudo cat > /usr/bin/keep-bot << ENDOFFILE
+#!/bin/bash
+
+source /usr/lib/keepbot/keepbot
+ENDOFFILE
+
+      echo "${dna_ascii} DONE!"
+      echo "You've sucessfully installed keepbot! If you need anything, just type the 'keepbot' command. But there is more: just one step away from running your KEEP Random Beacon node!"
+	  
+	  read -p "Type Y to start running your Ropsten testnet KEEP Random Beacon node!" -n 1 -r
+	  echo    # (optional) move to a new line
+	  if [[ ! $REPLY =~ ^[Yy]$ ]]
+	  then
+         exit 1
+	  fi
 	  
 	  echo "FINAL STEP! Setting up..."
 	  export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp
@@ -310,7 +333,7 @@ EOF
 --name keep-client \
 -p 3919:3919 \
 keepnetwork/keep-client:latest --config /mnt/config/config.toml start
-		  
+	
    else
       echo "You've already used this script to install your random beacon node. New updates are coming with new usability for Keep Bot. If you have any question, type the 'keep-bot help' command."
 fi

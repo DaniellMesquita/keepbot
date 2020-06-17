@@ -1,0 +1,71 @@
+#!/bin/sh
+
+nm="KEEP Bot"
+vs="1.0"
+programversion="""
+        \e[1;42m $nm \e[0m\e[100m version $vs \e[0m
+        Absurdly easy script for setting up your KEEP Network and tBTC nodes.
+        \e[100m Created in 06-16-2020 by Daniell Mesquita \e[0m
+		Donations are much appreciated, pls buy me a Husky dog:
+		Standard: 0xDDfC2e10702d8A781727A34D83B3bb3CA94a3E91 / daniellmesquita.eth
+		Argent: 0xc7dffdc95483bbf8b372bce78f1d9b2a7a1e8143 / daniell.argent.xyz
+"""
+
+# shows presentation if user just types 'keepbot/keep-bot':
+if [ "$1" = "" ]; then
+   echo "$programversion"
+   echo "Type 'keepbot --help' (without quotes) to see a list of available commands."
+fi
+
+# displays help message with a list of commands:
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+   cat << "EOF"
+
+-. .-.   .-. .-.   .-. .-.   .
+  \   \ /   \   \ /   \   \ /
+ / \   \   / \   \   / \   \
+~   `-~ `-`   `-~ `-`   `-~ `-
+
+EOF
+   echo "        \e[1;42m $nm $vs \e[0m"
+   echo "Use these commands after/together with 'keepbot' command."
+   echo "Available commands:"
+   echo "Information:"
+   echo "   --help, -h                  Shows all available commands"
+   echo "   --version, -v               Shows info about keepbot's version"
+   echo "Update:"
+   echo "   update, updt                Updates KEEP Bot (please verify the shell code before executing it after a update)"
+   echo "Upgrade:"
+   echo "   upgrade, upg                Upgrades Docker and your KEEP node"
+fi
+
+if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
+   echo "$vs"
+fi
+
+if [ "$1" = "update" ] || [ "$1" = "updt" ]; then
+   echo "Updating KEEP Bot..."
+   git pull origin master
+   echo "Done. Please verify the shell code at /usr/lib/keepbot before using KEEP Bot again."
+fi
+
+if [ "$1" = "upgrade" ] || [ "$1" = "upg" ]; then
+   echo "Upgrading Docker and your KEEP node..."
+   export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp
+   echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> ~/.profile
+   sudo docker stop keep-client
+   sudo docker rm keep-client
+   sudo docker images -a | grep "keep-client" | awk '{print $3}' | xargs
+   sudo docker rmi
+   echo "--------------------------------------------"
+   echo "Installing KEEP's docker image..."
+   sudo docker pull keepnetwork/keep-client:latest
+   sudo docker run -dit \
+--restart always \
+--volume $HOME/keep-client:/mnt \
+--env KEEP_ETHEREUM_PASSWORD=$KEEP_CLIENT_ETHEREUM_PASSWORD \
+--env LOG_LEVEL=debug \
+--name keep-client \
+-p 3919:3919 \
+keepnetwork/keep-client:latest --config /mnt/config/config.toml start
+fi
