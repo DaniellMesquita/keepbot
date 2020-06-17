@@ -197,6 +197,7 @@ if [ "$firstime" = "true" ]
 	  echo "Ok, your PROJECT ID is $projidtmp! let's proceed to the step 9!"
       # Your Infura PROJECT ID.
       export INFURA_PROJECT_ID="$projidtmp"
+	  echo "export KEEP_CLIENT_INFURA_PROJECT_ID=$projidtmp" >> ~/.profile
 	  
 	  echo "${dna_ascii} Step 9:"
       echo "THANKS FOR ALL YOUR AMAZING EFFORTS! Now, you can take a coffee as Keep Bot will handle all your server setting!"
