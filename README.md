@@ -31,6 +31,9 @@ For installing, execute the following 2 commands:
 
 ```sh
 sudo apt-get install wget git
+```
+
+```sh
 wget https://github.com/DaniellMesquita/keepbot/releases/download/1.1.4/keepbot.tar.gz -O keepbot.tar.gz && mkdir keepbot && mv keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && sudo chmod +x install.sh && sudo sh ./install.sh
 ```
 
