@@ -309,25 +309,7 @@ EOF
 --name keep-client \
 -p 3919:3919 \
 keepnetwork/keep-client:latest --config /mnt/config/config.toml start
-
-      export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp
-	  echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> ~/.profile
-	  sudo docker stop keep-client
-	  sudo docker rm keep-client
-	  sudo docker images -a | grep "keep-client" | awk '{print $3}' | xargs
-	  sudo docker rmi
-	  echo "--------------------------------------------"
-	  echo "Installing KEEP's docker image..."
-	  sudo docker pull keepnetwork/keep-client:latest
-	  sudo docker run -dit \
---restart always \
---volume $HOME/keep-client:/mnt \
---env KEEP_ETHEREUM_PASSWORD=$KEEP_CLIENT_ETHEREUM_PASSWORD \
---env LOG_LEVEL=debug \
---name keep-client \
--p 3919:3919 \
-keepnetwork/keep-client:latest --config /mnt/config/config.toml start
 		  
    else
-      echo ""
+      echo "You've already used this script to install your random beacon node. New updates are coming with new usability for Keep Bot. If you have any question, type the 'keep-bot help' command."
 fi
