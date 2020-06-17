@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.1.4
+      |_.__/   \___/   \__|  1.1.5
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -98,7 +98,7 @@ if [ "$firstime" = "true" ]
 	  echo "--------------------------------------------"
 	  echo "Soooo... ...what is your wallet address? (you can add the 0x before)"
 	  read -p "Address: "  ethaddrtmp
-	  if [ $ethaddrtmp = "0x"* ]
+	  if [[ "$ethaddrtmp" =~ .*"0x".* ]]
 	     then
 			ethaddr="$ethaddrtmp"
 			echo "DONE! Your address is $ethaddr! (thanks for adding the 0x, kisses)"
