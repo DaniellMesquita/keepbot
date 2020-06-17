@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.0
+      |_.__/   \___/   \__|  1.1.4
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -41,7 +41,7 @@ if [ "$firstime" = "true" ]
    then
       read -p "Do you want to continue? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
@@ -67,7 +67,7 @@ if [ "$firstime" = "true" ]
 	  
       read -p "Shall we proceed to STEP 2? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
@@ -80,14 +80,15 @@ if [ "$firstime" = "true" ]
 	  echo "👉 Have the force which may be with you, and keep your node 24/7 online"
 	  echo "Some steps are based in the good tutorial made by @novysf on Medium."
 	  echo "--------------------------------------------"
-	  echo "Go to https://myetherwallet.com and create a new wallet and select “By Keystore File”, set the password and write down this passphrase for later use. Click NEXT. AND REMEMBER, TO REMEMBER YOUR WALLET PASSWORD YOU'VE INPUT!"
+	  echo "Go to https://myetherwallet.com and create a new wallet and select “By Keystore File”, set the password and write down this passphrase/password for later use. Click NEXT. AND REMEMBER, TO REMEMBER YOUR WALLET PASSWORD YOU'VE INPUT!"
+	  echo "Note: don't use your main wallet/beneficiary address; for security reasons, you've generated a new wallet for exclusive use with your KEEP nodes. It's OK to use a different beneficiary address and operator address."
 	  echo "-"
-	  echo "On the next page press “Download Keystore File”. As a result you will have a file like “UTC — 2020–04–11T21–11–10.519Z — 8f076df6434f7a8da4793118f9f8cf82f958e319”. Rename it exactly to “keep_wallet.json” for later use in this guide."
+	  echo "On the next page, in MyEtherWallet press “Download Keystore File”. As a result you will have a file like “UTC — 2020–04–11T21–11–10.519Z — 8f076df6434f7a8da4793118f9f8cf82f958e319”. Rename it exactly to “keep_wallet.json” for later use in this guide."
 	  	  echo "--------------------------------------------"
 	  
 	        read -p "AFTER DONE (WAIT AND, ONLY AFTER DONE!) proceed to STEP 3? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
@@ -97,7 +98,7 @@ if [ "$firstime" = "true" ]
 	  echo "--------------------------------------------"
 	  echo "Soooo... ...what is your wallet address? (you can add the 0x before)"
 	  read -p "Address: "  ethaddrtmp
-	  if [[ $ethaddrtmp = "0x"* ]]
+	  if [ $ethaddrtmp = "0x"* ]
 	     then
 			ethaddr="$ethaddrtmp"
 			echo "DONE! Your address is $ethaddr! (thanks for adding the 0x, kisses)"
@@ -108,7 +109,7 @@ if [ "$firstime" = "true" ]
 	  
 	        read -p "If you say no, this script will restart. Is '$ethaddr' your address? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
@@ -117,6 +118,8 @@ if [ "$firstime" = "true" ]
 	  echo "Ok, your node operator address is $ethaddr! let's proceed to the step 4!"
 	  # Your ETH Wallet.
       export ETH_WALLET="$ethaddr"
+      echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> ~/.profile
+      echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> $HOME/.bashrc
 	  
 	  echo "${dna_ascii} Step 4:"
       echo "Now, we will fuel your operator address with testnet KEEP tokens!"
@@ -129,7 +132,7 @@ if [ "$firstime" = "true" ]
 	  
 	        read -p "Proceed to STEP 5? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi	
@@ -139,7 +142,7 @@ if [ "$firstime" = "true" ]
 	  
 	        read -p "AFTER DONE (WAIT AND, ONLY AFTER DONE!) proceed to STEP 6? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi	  
@@ -149,7 +152,7 @@ if [ "$firstime" = "true" ]
 	  
 	        read -p "AFTER DONE (WAIT AND, ONLY AFTER DONE!) proceed to STEP 7? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi	
@@ -166,7 +169,7 @@ if [ "$firstime" = "true" ]
 	  
 	        read -p "AFTER DONE (WAIT AND, ONLY AFTER DONE!) proceed to STEP 8? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi	
@@ -188,7 +191,7 @@ if [ "$firstime" = "true" ]
 	  
 	        read -p "If you say no, no, no: you aren't Amy Winehouse and this script will restart. Is '$projidtmp' your Infura project ID? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
@@ -198,6 +201,7 @@ if [ "$firstime" = "true" ]
       # Your Infura PROJECT ID.
       export INFURA_PROJECT_ID="$projidtmp"
 	  echo "export KEEP_CLIENT_INFURA_PROJECT_ID=$projidtmp" >> ~/.profile
+	  echo "export KEEP_CLIENT_INFURA_PROJECT_ID=$projidtmp" >> $HOME/.bashrc
 	  
 	  echo "${dna_ascii} Step 9:"
       echo "THANKS FOR ALL YOUR AMAZING EFFORTS! Now, you can take a coffee as Keep Bot will handle all your server setting!"
@@ -240,29 +244,48 @@ if [ "$firstime" = "true" ]
 	  
 	  echo "Setting your server's IP..."
 	  # Get your server's IP
-      export SERVER_IP=$(curl ifconfig.me)
+      export SERVER_IP=$(curl -s ipecho.net/plain)
+	  echo "export SERVER_IP=$(curl -s ipecho.net/plain)" >> ~/.profile
+	  echo "export SERVER_IP=$(curl -s ipecho.net/plain)" >> $HOME/.bashrc
 	  
 	  echo "Setting up config.toml..."
 	  cat <<EOF >>$HOME/keep-client/config/config.toml
-# Ethereum host connection info.
+# Connection details of Ethereum blockchain.
 [ethereum]
  URL = "wss://ropsten.infura.io/ws/v3/$INFURA_PROJECT_ID"
  URLRPC = "https://ropsten.infura.io/v3/$INFURA_PROJECT_ID"# Keep operator Ethereum account.
 [ethereum.account]
  Address = "$ETH_WALLET"
- KeyFile = "/mnt/keystore/keep_wallet.json"# Keep contract addresses configuration.
+ KeyFile = "/mnt/keep-client/keystore/keep_wallet.json"# Keep contract addresses configuration.
+# This address might change and need to be replaced from time to time
+# if it does, the new contract address will be listed here:
+# https://github.com/keep-network/keep-client/blob/master/docs/run-keep-client.adoc
 [ethereum.ContractAddresses]
  KeepRandomBeaconOperator = "0x440626169759ad6598cd53558F0982b84A28Ad7a"
  TokenStaking = "0xEb2bA3f065081B6459A6784ba8b34A1DfeCc183A"
  KeepRandomBeaconService = "0xF9AEdd99357514d9D1AE389A65a4bd270cBCb56c"# Keep network configuration.
+# This addresses might change and need to be replaced from time to time
+# if it does, the new contract address will be listed here:
+# https://github.com/keep-network/keep-client/blob/master/docs/run-keep-client.adoc
+# Addresses of applications approved by the operator.
+[SanctionedApplications]
+  Addresses = [
+    "0x2b70907b5c44897030ea1369591ddcd23c5d85d6",
+]
+[Storage]
+ DataDir = "/mnt/keep-client/persistence"
 [LibP2P]
  Peers = ["/dns4/testnet.keep-client.hashd.dev/tcp/3919/ipfs/16Uiu2HAmJsBiNVFNxsJ27NSQEByv39B1M7AKx5FrAc1htqYhHGhU",
 "/dns4/testnet2.keep-client.hashd.dev/tcp/3919/ipfs/16Uiu2HAmAV3sNGXTpdZCguUEd5QqMmg13WZ5dBTtjbhYeQmTHwgM"]
  Port = 3919
  # Override the node’s default addresses announced in the network
- AnnouncedAddresses = ["/ip4/$SERVER_IP/tcp/3919"]# Storage is encrypted
-[Storage]
- DataDir = "/mnt/persistence"
+ AnnouncedAddresses = ["/ip4/$SERVER_IP/tcp/5678"]# Storage is encrypted
+[TSS]
+# Timeout for TSS protocol pre-parameters generation. The value
+# should be provided based on resources available on the machine running the client.
+# This is an optional parameter, if not provided timeout for TSS protocol
+# pre-parameters generation will be set to .
+  PreParamsGenerationTimeout = "2m30s"
 EOF
 	  
 	  echo "Do you remember the keep_wallet.json file you've created in the first steps?"
@@ -270,14 +293,14 @@ EOF
 	  
 	        read -p "AFTER DONE (WAIT AND, ONLY AFTER DONE!) proceed? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
 	  
 	  read -p "Now that you've copied the contents of keep_wallet.json, you'll need to paste it in the window which will open (nano text editor) and save the file. Type Y to proceed. " -n 1 -r
 	  echo    # (optional) move to a new line
-	  if [[ ! $REPLY =~ ^[Yy]$ ]]
+	  if [ ! $REPLY =~ ^[Yy]$ ]
 	  then
          exit 1
 	  fi
@@ -286,18 +309,19 @@ EOF
 	  
       read -p "Shall we proceed to STEP 10? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
-      if [[ ! $REPLY =~ ^[Yy]$ ]]
+      if [ ! $REPLY =~ ^[Yy]$ ]
       then
             exit 1
       fi
 	  
 	  echo "${dna_ascii} Step 10:"	
-      echo "Remember that, when you generate your wallet .json file in MyEtherWallet, you've setup a password for it? You will need to enter it bellow."
+      echo "Remember that, when you generate your wallet .json file in MyEtherWallet, you've setup a passphrase/password for it? You will need to enter it bellow."
 	  
 	  echo "--------------------------------------------"
       read -s -p "Enter Password: " ethpswdtmp
 	  # Set password permanently in VPS user's profile
       echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> ~/.profile
+	  echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> $HOME/.bashrc
       echo "Done!"
 
       echo "Installing keepbot..."
@@ -313,26 +337,32 @@ ENDOFFILE
 source /usr/lib/keepbot/keepbot
 ENDOFFILE
 
+	  sudo chmod +x /usr/bin/keepbot
+	  sudo chmod +x /usr/bin/keep-bot
+
       echo "${dna_ascii} DONE!"
       echo "You've sucessfully installed keepbot! If you need anything, just type the 'keepbot' command. But there is more: just one step away from running your KEEP Random Beacon node!"
+	  echo "*** NOTE: Upgrading will put your node temporarily offline while working. Remember to experiment the 'keepbot upgrade' in testnet, so you can know if you can securely upgrade your node in mainnet without having your KEEP tokens slashed. ***"
 	  
 	  read -p "Type Y to start running your Ropsten testnet KEEP Random Beacon node!" -n 1 -r
 	  echo    # (optional) move to a new line
-	  if [[ ! $REPLY =~ ^[Yy]$ ]]
+	  if [ ! $REPLY =~ ^[Yy]$ ]
 	  then
          exit 1
 	  fi
 	  
 	  echo "FINAL STEP! Setting up..."
 	  export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp
-	  sudo docker run -dit \
+	  sudo docker run -d \
 --restart always \
---volume $HOME/keep-client:/mnt \
+--entrypoint /usr/local/bin/keep-client \
+--volume $HOME/keep-client:/mnt/keep-client \
 --env KEEP_ETHEREUM_PASSWORD=$KEEP_CLIENT_ETHEREUM_PASSWORD \
 --env LOG_LEVEL=debug \
 --name keep-client \
--p 3919:3919 \
-keepnetwork/keep-client:latest --config /mnt/config/config.toml start
+-p 3920:3919 \
+keepnetwork/keep-client:latest \
+--config /mnt/keep-client/config/config.toml start
 	
    else
       echo "You've already used this script to install your random beacon node. New updates are coming with new usability for Keep Bot. If you have any question, type the 'keep-bot help' command."

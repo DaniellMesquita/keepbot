@@ -1,7 +1,7 @@
 #!/bin/sh
 
 nm="KEEP Bot"
-vs="1.0"
+vs="1.1.4"
 programversion="""
         \e[1;42m $nm \e[0m\e[100m version $vs \e[0m
         Absurdly easy script for setting up your KEEP Network and tBTC nodes.
@@ -37,6 +37,7 @@ EOF
    echo "   update, updt                Updates KEEP Bot (please verify the shell code before executing it after a update)"
    echo "Upgrade:"
    echo "   upgrade, upg                Upgrades Docker and your KEEP node"
+   echo "*** NOTE: Upgrading will put your node temporarily offline while working. Remember to experiment the 'keepbot upgrade' in testnet, so you can know if you can securely upgrade your node in mainnet without having your KEEP tokens slashed. ***"
 fi
 
 if [ "$1" = "--version" ] || [ "$1" = "-v" ]; then
@@ -53,6 +54,7 @@ if [ "$1" = "upgrade" ] || [ "$1" = "upg" ]; then
    echo "Upgrading Docker and your KEEP node..."
    export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp
    echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> ~/.profile
+   echo "export KEEP_CLIENT_ETHEREUM_PASSWORD=$ethpswdtmp" >> $HOME/.bashrc
    sudo docker stop keep-client
    sudo docker rm keep-client
    sudo docker images -a | grep "keep-client" | awk '{print $3}' | xargs
@@ -60,12 +62,14 @@ if [ "$1" = "upgrade" ] || [ "$1" = "upg" ]; then
    echo "--------------------------------------------"
    echo "Installing KEEP's docker image..."
    sudo docker pull keepnetwork/keep-client:latest
-   sudo docker run -dit \
+   sudo docker run -d \
 --restart always \
---volume $HOME/keep-client:/mnt \
+--entrypoint /usr/local/bin/keep-client \
+--volume $HOME/keep-client:/mnt/keep-client \
 --env KEEP_ETHEREUM_PASSWORD=$KEEP_CLIENT_ETHEREUM_PASSWORD \
 --env LOG_LEVEL=debug \
 --name keep-client \
--p 3919:3919 \
-keepnetwork/keep-client:latest --config /mnt/config/config.toml start
+-p 3920:3919 \
+keepnetwork/keep-client:latest \
+--config /mnt/keep-client/config/config.toml start
 fi

@@ -12,7 +12,7 @@
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.0
+      |_.__/   \___/   \__|  1.1.4
   
 --------------------------------------------
 ```
@@ -25,13 +25,13 @@ Site: https://daniellmesquita.eth.link/keepbot (not done yet)
 
 ## Downloading and Installing
 
-Current version: 1.0
+Current version: 1.1.4
 
 For installing, execute the following 2 commands:
 
 ```sh
-sudo apt-get install curl git
-curl https://github.com/DaniellMesquita/keepbot/releases/download/1.0/keepbot.tar.gz --output keepbot.tar.gz && mkdir keepbot && mv keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && sudo chmod +x install.sh && sudo sh ./install.sh
+sudo apt-get install wget git
+wget https://github.com/DaniellMesquita/keepbot/releases/download/1.1.4/keepbot.tar.gz -O keepbot.tar.gz && mkdir keepbot && mv keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && sudo chmod +x install.sh && sudo sh ./install.sh
 ```
 
 ## Updating
@@ -41,6 +41,8 @@ Update KEEP Bot:
 ```sh
 keepbot update
 ```
+
+**NOTE**: Please verify the shell code at /usr/lib/keepbot before using KEEP Bot again.
 
 ## Upgrading
 
@@ -52,8 +54,12 @@ keepbot upgrade
 
 ## To do
 
+* Common modules (update)
+* Use settings file for app data
+* Don't repeat common phrases, which includes keepbot version in presentation
+* Identify if installation is at first time or not
+* Organize steps into different sh files
 * Resume steps after closing the term window
 * Support both Ropsten testnet and mainnet
 * Support tBTC ECDSA alongside KEEP Random Beacon
-* Common modules (update)
 * Useful commands and troubleshooting
