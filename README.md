@@ -12,7 +12,7 @@
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.1.5
+      |_.__/   \___/   \__|  1.1.6
   
 --------------------------------------------
 ```
@@ -25,7 +25,7 @@ Site: https://daniellmesquita.eth.link/keepbot (not done yet)
 
 ## Downloading and Installing
 
-Current version: 1.1.5
+Current version: 1.1.6
 
 For installing, execute the following 2 commands:
 
@@ -34,7 +34,7 @@ sudo apt-get install wget git
 ```
 
 ```sh
-cd && wget https://github.com/DaniellMesquita/keepbot/releases/download/1.1.5/keepbot.tar.gz -O keepbot.tar.gz && mkdir -p keepbot && mv -f keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && sudo chmod +x install.sh && sudo chmod 775 install.sh; sudo ./install.sh
+cd && wget https://github.com/DaniellMesquita/keepbot/releases/download/1.1.6/keepbot.tar.gz -O keepbot.tar.gz && mkdir -p keepbot && mv -f keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && sudo chmod +x install.sh && sudo chmod 775 install.sh; sudo ./install.sh
 ```
 
 ## Updating

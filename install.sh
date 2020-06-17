@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.1.5
+      |_.__/   \___/   \__|  1.1.6
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -137,10 +137,16 @@ if [ "$firstime" = "true" ]
             exit 1
       fi	
 
-	  echo "${dna_ascii} Step 5:"	  
-	  echo "Please visit https://faucet.ropsten.be/ and load some test Ether to your wallet ($ETH_WALLET) for tx fees you'll need."
+	  echo "${dna_ascii} Step 5:"
+      echo "Now, for the tx fees you'll need, we will fuel your operator address with testnet Ether!"
+
+      echo "Keep Bot will automagically do it for you..."
+	  curl https://faucet.ropsten.be/donate/$ETH_WALLET
+      	  
+	  echo "--------------------------------------------"
+	  echo "Done!"
 	  
-	        read -p "AFTER DONE (WAIT AND, ONLY AFTER DONE!) proceed to STEP 6? [Y/n]" -n 1 -r
+	        read -p "Proceed to STEP 6? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
       if [ ! $REPLY =~ ^[Yy]$ ]
       then
