@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.2.1
+      |_.__/   \___/   \__|  1.2.2
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -255,6 +255,7 @@ if [ "$firstime" = "true" ]
 	  echo "export SERVER_IP=$(curl -s ipecho.net/plain)" >> $HOME/.bashrc
 	  
 	  echo "Setting up config.toml..."
+	  sudo rm -f /tmp/config.toml
 	  cat <<EOF >>/tmp/config.toml
 # Connection details of Ethereum blockchain.
 [ethereum]
