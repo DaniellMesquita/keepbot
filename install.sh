@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.2.0.1
+      |_.__/   \___/   \__|  1.2.1
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -311,8 +311,8 @@ EOF
          exit 1
 	  fi
 	  
-#	  sudo rm -f $HOME/keep-client/config/config.toml
-#	  sudo mv -f /tmp/config.toml $HOME/keep-client/config
+	  rm $HOME/keep-client/config/config.toml
+	  cp /tmp/config.toml $HOME/keep-client/config && sudo rm -f /tmp/config.toml
 	  nano $HOME/keep-client/keystore/keep_wallet.json
 	  
       read -p "Shall we proceed to STEP 10? [Y/n]" -n 1 -r
