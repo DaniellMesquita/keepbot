@@ -331,7 +331,7 @@ EOF
       echo "Done!"
 
       echo "Installing keepbot..."
-      sudo cp -r -f --preserve=all . /usr/lib/keepbot
+      sudo cp -rT -d -f --preserve=all . /usr/lib/keepbot
 	  sudo cat > /usr/bin/keepbot << ENDOFFILE
 #!/bin/bash
 
