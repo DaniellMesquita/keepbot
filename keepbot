@@ -46,7 +46,7 @@ fi
 
 if [ "$1" = "update" ] || [ "$1" = "updt" ]; then
    echo "Updating KEEP Bot..."
-   git pull origin master
+   cd /usr/lib/keepbot && git pull origin master && cd
    echo "Done. Please verify the shell code at /usr/lib/keepbot before using KEEP Bot again."
 fi
 
