@@ -293,8 +293,6 @@ if [ "$firstime" = "true" ]
 # pre-parameters generation will be set to .
   PreParamsGenerationTimeout = "2m30s"
 EOF
-
-      sudo mv -f /tmp/config.toml $HOME/keep-client/config/config.toml
 	  
 	  echo "Do you remember the keep_wallet.json file you've created in the first steps?"
 	  echo "Now, copy the content of your keep_wallet.json file to paste in the server."
@@ -305,6 +303,9 @@ EOF
       then
             exit 1
       fi
+	  
+	  sudo rm -f $HOME/keep-client/config/config.toml
+	  sudo mv -f /tmp/config.toml $HOME/keep-client/config
 	  
 	  read -p "Now that you've copied the contents of keep_wallet.json, you'll need to paste it in the window which will open (nano text editor) and save the file. Type Y to proceed. " -n 1 -r
 	  echo    # (optional) move to a new line
