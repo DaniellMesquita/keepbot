@@ -304,9 +304,6 @@ EOF
             exit 1
       fi
 	  
-	  sudo rm -f $HOME/keep-client/config/config.toml
-	  sudo mv -f /tmp/config.toml $HOME/keep-client/config
-	  
 	  read -p "Now that you've copied the contents of keep_wallet.json, you'll need to paste it in the window which will open (nano text editor) and save the file. Type Y to proceed. " -n 1 -r
 	  echo    # (optional) move to a new line
 	  if [ ! $REPLY =~ ^[Yy]$ ]
@@ -314,6 +311,8 @@ EOF
          exit 1
 	  fi
 	  
+#	  sudo rm -f $HOME/keep-client/config/config.toml
+#	  sudo mv -f /tmp/config.toml $HOME/keep-client/config
 	  nano $HOME/keep-client/keystore/keep_wallet.json
 	  
       read -p "Shall we proceed to STEP 10? [Y/n]" -n 1 -r
