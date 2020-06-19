@@ -24,7 +24,7 @@ cat << "EOF"
       | |__     ___   | |_ 
       | '_ \   / _ \  | __|
       | |_) | | (_) | | |_ 
-      |_.__/   \___/   \__|  1.2.2
+      |_.__/   \___/   \__|  1.2.3
                       
 
   https://daniellmesquita.eth.link/keepbot
@@ -285,7 +285,7 @@ if [ "$firstime" = "true" ]
  Peers = ["/dns4/testnet.keep-client.hashd.dev/tcp/3919/ipfs/16Uiu2HAmJsBiNVFNxsJ27NSQEByv39B1M7AKx5FrAc1htqYhHGhU",
 "/dns4/testnet2.keep-client.hashd.dev/tcp/3919/ipfs/16Uiu2HAmAV3sNGXTpdZCguUEd5QqMmg13WZ5dBTtjbhYeQmTHwgM"]
  Port = 3919
- # Override the node’s default addresses announced in the network
+ # Override the node's default addresses announced in the network
  AnnouncedAddresses = ["/ip4/$SERVER_IP/tcp/5678"]# Storage is encrypted
 [TSS]
 # Timeout for TSS protocol pre-parameters generation. The value
@@ -312,9 +312,7 @@ EOF
          exit 1
 	  fi
 	  
-	  rm $HOME/keep-client/config/config.toml
-	  cp /tmp/config.toml $HOME/keep-client/config && sudo rm -f /tmp/config.toml
-	  nano $HOME/keep-client/keystore/keep_wallet.json
+	  rm $HOME/keep-client/config/config.toml && cp /tmp/config.toml $HOME/keep-client/config/config.toml && sudo rm -f /tmp/config.toml&& nano $HOME/keep-client/keystore/keep_wallet.json
 	  
       read -p "Shall we proceed to STEP 10? [Y/n]" -n 1 -r
       echo    # (optional) move to a new line
