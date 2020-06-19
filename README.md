@@ -34,7 +34,7 @@ sudo apt-get install wget git
 ```
 
 ```sh
-cd && wget https://github.com/DaniellMesquita/keepbot/releases/download/1.1.8/keepbot.tar.gz -O keepbot.tar.gz && mkdir -p keepbot && mv -f keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && sudo chmod +x install.sh && sudo chmod 775 install.sh; sudo ./install.sh
+cd && wget https://github.com/DaniellMesquita/keepbot/releases/download/1.1.8/keepbot.tar.gz -O keepbot.tar.gz && mkdir -p keepbot && mv -f keepbot.tar.gz keepbot && cd keepbot && tar -zxvf keepbot.tar.gz && rm -f keepbot.tar.gz && sudo chmod +x install.sh && sudo chmod 775 install.sh; sudo ./install.sh
 ```
 
 ## Updating
