@@ -255,7 +255,7 @@ if [ "$firstime" = "true" ]
 	  echo "export SERVER_IP=$(curl -s ipecho.net/plain)" >> $HOME/.bashrc
 	  
 	  echo "Setting up config.toml..."
-	  cat <<EOF >>$HOME/keep-client/config/config.toml
+	  cat <<EOF >>/tmp/config.toml
 # Connection details of Ethereum blockchain.
 [ethereum]
  URL = "wss://ropsten.infura.io/ws/v3/$INFURA_PROJECT_ID"
@@ -293,6 +293,8 @@ if [ "$firstime" = "true" ]
 # pre-parameters generation will be set to .
   PreParamsGenerationTimeout = "2m30s"
 EOF
+
+      sudo mv -f /tmp/config.toml $HOME/keep-client/config/config.toml
 	  
 	  echo "Do you remember the keep_wallet.json file you've created in the first steps?"
 	  echo "Now, copy the content of your keep_wallet.json file to paste in the server."
