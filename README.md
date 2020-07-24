@@ -57,6 +57,9 @@ keepbot upgrade
 
 ## To do
 
+* Rename to Keep Wizard
+* Branding
+* GitLab
 * Don't repeat common phrases, which includes keepbot version in presentation
 * Common modules (update)
 * Organize steps into different sh files (Resume steps after closing the term window)
