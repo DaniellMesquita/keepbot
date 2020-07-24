@@ -57,12 +57,11 @@ keepbot upgrade
 
 ## To do
 
-* Common modules (update)
-* Use settings file for app data
 * Don't repeat common phrases, which includes keepbot version in presentation
-* Identify if installation is at first time or not
-* Organize steps into different sh files
-* Resume steps after closing the term window
-* Support both Ropsten testnet and mainnet
+* Common modules (update)
+* Organize steps into different sh files (Resume steps after closing the term window)
+* Use settings file for app data
+* Identify if installation is at first time or don't
 * Support tBTC ECDSA alongside KEEP Random Beacon
+* Support both Ropsten testnet and mainnet
 * Useful commands and troubleshooting
